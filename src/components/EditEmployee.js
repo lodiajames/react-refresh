@@ -2,7 +2,9 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function EditEmployee() {
+function EditEmployee(props) {
+  const [name, setName] = useState(props.name);
+  const [role, setRole] = useState(props.role);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -28,16 +30,20 @@ function EditEmployee() {
         <Modal.Body>
          
 
-<form id='editmodal' class="max-w-sm mx-auto">
-  <div class="mb-5">
-    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Full Name</label>
-    <input type="text" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Full name" required />
+<form onSubmit={(e)=>{
+  e.preventDefault()
+  
+  props.updateEmployee( props.id, name, role)
+
+}} id='editmodal' className="max-w-sm mx-auto">
+  <div className="mb-5">
+    <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Full Name</label>
+    <input type="text" id="name"  value={name} onChange={(e)=>setName(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Full name" required />
   </div>
-  <div class="mb-5">
-    <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
-    <input type="text" id="role" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='Your role' required />
+  <div className="mb-5">
+    <label htmlFor="role" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
+    <input type="text" id="role"  value={role} onChange={(e)=>setRole(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='Your role' required />
   </div>
-   {/* <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button> */}
 
 </form>
 
