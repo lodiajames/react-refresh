@@ -1,7 +1,12 @@
 
 import './index.css';
+import  {v4 as uuidv4} from 'uuid'
 import Employee from './components/Employee';
-import { useState } from 'react';
+import AddEmployee from './components/AddEmployee';
+
+import { Fragment, useState } from 'react';
+import EditEmployee from './components/EditEmployee';
+
 function App() {
 
   const [employees, setEmployees]= useState(
@@ -78,25 +83,43 @@ function App() {
    setEmployees(updateEmployees)
   }
 
+  const newEmployee = (name, role, img) =>{
+
+    const newEmployee = {
+      id: uuidv4(),
+      name,
+      role,
+      img
+    }
+    setEmployees([...employees, newEmployee])
+    
+
+  }
+
   return (
-    <div className="App justify-center">
+    <div className="App"> 
      
 
-        <>
+        <Fragment >
         
 
         <div className='flex flex-wrap m-4'>
            {employees.map((employee)=>{
+            const editEmployee = (
+              <EditEmployee  id={employee.id} name={employee.name} role={employee.role} updateEmployee={updateEmployee}/>
+            )
             return (
-              <Employee key={employee.id} id={employee.id} name={employee.name} role={employee.role} img={employee.img} updateEmployee={updateEmployee}/>
+              <Employee key={employee.id} id={employee.id} name={employee.name} role={employee.role} img={employee.img} editEmployee={editEmployee}/>
             )
            })}
 
        </div>
-       </>
+      <AddEmployee newEmployee={newEmployee}/>
+       </Fragment>
    
      
     </div>
+    
   );
 }
 
