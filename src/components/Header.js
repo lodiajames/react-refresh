@@ -3,9 +3,9 @@ import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
+  { name: 'Employees', href: '/', current: true },
+  { name: 'Customers', href: '/customers', current: false },
+  { name: 'Dictionary', href: '/dictionary', current: false },
   { name: 'Calendar', href: '#', current: false },
 ]
 
@@ -92,7 +92,34 @@ export default function Header(props) {
    
     
     </Disclosure>
+    <div className='m-10'>
     {props.children}
+
+
+    </div>
+    
+
+<footer className="bg-white rounded-lg shadow m-4 dark:bg-gray-800">
+    <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+      <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://twitter.com/" class="hover:underline">ibrahima™</a>. All Rights Reserved.
+    </span>
+    <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+        <li>
+            <a href="/" className="hover:underline me-4 md:me-6">Home</a>
+        </li>
+        <li>
+            <a href="/" className="hover:underline me-4 md:me-6">Privacy Policy</a>
+        </li>
+        <li>
+            <a href="/" className="hover:underline me-4 md:me-6">Licensing</a>
+        </li>
+        <li>
+            <a href="/" className="hover:underline">Customers</a>
+        </li>
+    </ul>
+    </div>
+</footer>
+
     </>
 
 
